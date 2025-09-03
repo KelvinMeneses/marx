@@ -1,15 +1,15 @@
-async function cadastrarCliente(event) {
+async function cadastrarBarbeiro(event) {
     event.preventDefault();
 
 
 
-    const cliente = {
-        nome: document.getElementById("nome_b").value,
-        telefone: document.getElementById("telefone_b").value,
-        email: document.getElementById("email_b").value,
-        cpf: document.getElementById("cpf_b").value,
+    const barbeiro = {
+        nome: document.getElementById("nome").value,
+        telefone: document.getElementById("telefone").value,
+        email: document.getElementById("email").value,
+        cpf: document.getElementById("cpf").value,
         especialidade: document.getElementById("especialidade").value,
-        endereco: document.getElementById("endereco_b").value
+        endereco: document.getElementById("endereco").value
     };
 
     try {
@@ -18,23 +18,23 @@ async function cadastrarCliente(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(cliente)
+            body: JSON.stringify(barbeiro)
         });
 
         const result = await response.json();
         if (response.ok) {
-            alert("Cliente cadastrado com sucesso!");
-            document.getElementById("cliente-form").reset();
+            alert("Barbeiro cadastrado com sucesso!");
+            document.getElementById("barbeiro-form").reset();
         } else {
             alert(`Erro: ${result.message}`);
         }
     } catch (err) {
         console.error("Erro na solicitação:", err);
-        alert("Erro ao cadastrar cliente.");
+        alert("Erro ao cadastrar barbeiro.");
     }
 }
 // Função para listar todos os clientes ou buscar clientes por CPF
-async function listarClientes() {
+async function listarBarbeiro() {
     const cpf = document.getElementById('cpf').value.trim();  // Pega o valor do CPF digitado no input
 
     let url = '/barbeiros';  // URL padrão para todos os clientes
@@ -46,25 +46,25 @@ async function listarClientes() {
 
     try {
         const response = await fetch(url);
-        const clientes = await response.json();
+        const barbeiros = await response.json();
 
-        const tabela = document.getElementById('tabela-clientes');uuu
+        const tabela = document.getElementById('tabela-barbeiros');uuu
         tabela.innerHTML = ''; // Limpa a tabela antes de preencher
 
-        if (clientes.length === 0) {
+        if (barbeiros.length === 0) {
             // Caso não encontre clientes, exibe uma mensagem
-            tabela.innerHTML = '<tr><td colspan="6">Nenhum cliente encontrado.</td></tr>';
+            tabela.innerHTML = '<tr><td colspan="6">Nenhum barbeiro encontrado.</td></tr>';
         } else {
-            clientes.forEach(cliente => {
+            barbeiros.forEach(barbeiro => {
                 const linha = document.createElement('tr');
                 linha.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.email}</td>
-                    <td>${cliente.telefone}</td>
-                    <td>${cliente.especialidade}</td>
-                    <td>${cliente.endereco}</td>
+                    <td>${barbeiro.id}</td>
+                    <td>${barbeiro.nome}</td>
+                    <td>${barbeiro.cpf}</td>
+                    <td>${barbeiro.email}</td>
+                    <td>${barbeiro.telefone}</td>
+                    <td>${barbeiro.especialidade}</td>
+                    <td>${barbeiro.endereco}</td>
                 `;
                 tabela.appendChild(linha);
             });
@@ -74,7 +74,7 @@ async function listarClientes() {
     }
 }
 // Função para atualizar as informações do cliente
-async function atualizarCliente() {
+async function atualizarBarbeiro() {
     const nome = document.getElementById('nome').value;
     const cpf = document.getElementById('cpf').value;
     const email = document.getElementById('email').value;
@@ -82,11 +82,12 @@ async function atualizarCliente() {
     const especialidade = document.getElementById('especialidade').value;
     const endereco = document.getElementById('endereco').value;
 
-    const clienteAtualizado = {
+    const barbeiroAtualizado = {
         nome,
         email,
         telefone,
         endereco,
+        especialidade,
         cpf
     };
 
@@ -96,11 +97,11 @@ async function atualizarCliente() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(clienteAtualizado)
+            body: JSON.stringify(barbeiroAtualizado)
         });
 
         if (response.ok) {
-            alert('Cliente atualizado com sucesso!');
+            alert('Barbeiro atualizado com sucesso!');
         } else {
             const errorMessage = await response.text();
             alert('Erro ao atualizar barbeiro: ' + errorMessage);
@@ -112,7 +113,7 @@ async function atualizarCliente() {
 }
 
 
-async function limpaCliente() {
+async function limpaBarbeiro() {
     document.getElementById('nome').value = '';
     document.getElementById('cpf').value = '';
     document.getElementById('email').value = '';

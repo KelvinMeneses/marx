@@ -8,74 +8,125 @@
     --hover-bg: rgba(139, 0, 0, 0.1); /* Efeito hover */
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {nav ul {
+       display: flex;
+        list-style: none;
+        gap: 3rem; /* Valor aumentado */
+        padding: 0;
+        margin: 1rem 0 0 0;
+        justify-content: center; /* Adicione esta linha */
+    }
+
+    nav a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem; /* Padding horizontal aumentado */
+        position: relative;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        background-color: rgba(139, 0, 0, 0.2); /* Opcional: destaque visual */
+        border-radius: 4px; /* Opcional: bordas arredondadas */
+    }
+
+    nav a:hover {
+        color: var(--accent-color);
+        transform: translateY(-2px);
+    }
+
+    nav a.active {
+        color: var(--accent-color);
+        font-weight: 700;
+    }
+
+    nav a.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent-color);
+        border-radius: 3px 3px 0 0;
+    }
     background-color: var(--dark-color);
     color: var(--light-color);
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
 }
 
-/* Cabeçalho estilizado */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos do Header */
 header {
-    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-    color: white;
-    padding: 1rem 0;
+    background: linear-gradient(to right, var(--black), var(--primary-color));
+    color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow);
     border-bottom: 3px solid var(--accent-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.cabecalho {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+header h1 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-}
-
-.cabecalho h2 {
-    margin: 0;
+    gap: 0.5rem;
     font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.cabecalho h2 i {
+header h1 i {
     color: var(--accent-color);
 }
 
-.cabecalho nav ul {
+nav ul {
+   display: flex;
     list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
+    gap: 3rem; /* Valor aumentado */
     padding: 0;
+    margin: 1rem 0 0 0;
+    justify-content: center; /* Adicione esta linha */
 }
 
-.botao-link {
-    color: var(--light-color);
+nav a {
+    color: var(--white);
     text-decoration: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 4px;
-    transition: all 0.3s;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background-color: rgba(139, 0, 0, 0.2);
+    padding: 0.5rem 1.5rem; /* Padding horizontal aumentado */
+    position: relative;
+    transition: all 0.3s;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     letter-spacing: 1px;
+    background-color: rgba(139, 0, 0, 0.2); /* Opcional: destaque visual */
+    border-radius: 4px; /* Opcional: bordas arredondadas */
 }
 
-.botao-link:hover {
-    background-color: rgba(255, 0, 0, 0.3);
+nav a:hover {
+    color: var(--accent-color);
     transform: translateY(-2px);
+}
+
+nav a.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px 3px 0 0;
 }
 
 /* Container principal */
@@ -233,22 +284,22 @@ footer p {
         gap: 1rem;
         text-align: center;
     }
-    
+
     .cabecalho nav ul {
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     .half-box {
         flex: 1 1 100%;
     }
-    
+
     .alinhaBtns {
         width: 100%;
         margin-bottom: 10px;
         justify-content: center;
     }
-    
+
     table {
         display: block;
         overflow-x: auto;
@@ -259,12 +310,12 @@ footer p {
     #main-container {
         padding: 1rem;
     }
-    
+
     .botao-link {
         padding: 0.5rem 0.8rem;
         font-size: 0.75rem;
     }
-    
+
     th, td {
         padding: 8px 10px;
         font-size: 0.9rem;

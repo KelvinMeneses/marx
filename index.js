@@ -62,10 +62,10 @@ db.serialize(() => {
             horario TIME NOT NULL,
             cpf_cliente VARCHAR(11) NOT NULL,
             cpf_barbeiro VARCHAR(14) NOT NULL,
-            nome_servico INTEGER NOT NULL,
+            id_servico INTEGER NOT NULL,
             FOREIGN KEY (cpf_cliente) REFERENCES clientes (cpf),
             FOREIGN KEY (cpf_barbeiro) REFERENCES barbeiros (cpf),
-            FOREIGN KEY (nome_servico) REFERENCES servicos (nome)
+            FOREIGN KEY (id_servico) REFERENCES servicos (id)
         )
     `);
 
@@ -166,9 +166,7 @@ app.get("/barbeiros", (req, res) => {
         db.all(query, [`%${cpf}%`], (err, rows) => {
             if (err) {
                 console.error(err);
-                return res
-                    .status(500)
-                    .json({ message: "Erro ao buscar barbeiros." });
+                    return res.status(500).json({ message: "Erro ao buscar barbeiros." });
             }
             res.json(rows); // Retorna os barbeiros encontrados ou um array vazio
         });
@@ -179,9 +177,7 @@ app.get("/barbeiros", (req, res) => {
         db.all(query, (err, rows) => {
             if (err) {
                 console.error(err);
-                return res
-                    .status(500)
-                    .json({ message: "Erro ao buscar barbeiros." });
+                return res.status(500).json({ message: "Erro ao buscar barbeiros." });
             }
             res.json(rows); // Retorna todos os barbeiros
         });
